@@ -1,59 +1,79 @@
 # 📒 Smart Notes App (Ship 70 Challenge)
 
-Building a Smart Notes app in 70 days using Android, Kotlin, and Jetpack Compose.
+Building a Smart Notes app in 70 days using **Android, Kotlin, and Jetpack Compose**.
+
+---
 
 ## 🚀 Goal
-- Build real projects daily
-- Focus on learning by building (not just tutorials)
-- Improve consistency and development skills
+- Build real projects daily  
+- Learn by building (not just watching tutorials)  
+- Become consistent and production-focused  
 
 ---
 
 ## 📅 Progress
 
 ### ✅ Day 1
-- Set up Android project
-- Built basic UI with Compose
-- Learned state management (`mutableStateOf`, `remember`)
+- Project setup in Android Studio  
+- Built basic UI using Jetpack Compose  
+- Learned state handling (`remember`, `mutableStateOf`)  
+
+---
 
 ### ✅ Day 2
-- Built Notes List UI using `LazyColumn`
-- Created reusable `NoteItem` component
-- Learned list rendering in Jetpack Compose
+- Implemented Notes List using `LazyColumn`  
+- Created reusable `NoteItem` component  
+- Understood list rendering in Compose  
+
+---
+
+### ✅ Day 3
+- Added Note input (Title + Content)  
+- Implemented dynamic note addition  
+- Improved UI (cards, spacing, alignment)  
+
+---
+
+## 📱 Screenshots
+
+| Day 2 | Day 3 |
+|------|------|
+| ![Day2](screenshots/day2.jpg) | ![Day3](screenshots/day3.jpg) |
 
 ---
 
 ## 🛠 Tech Stack
-- Kotlin
-- Jetpack Compose
-- Android Studio
+- Kotlin  
+- Jetpack Compose  
+- Android Studio  
 
 ---
 
-## 📌 Features (so far)
-- Basic UI screen
-- Dynamic text update (button click)
-- Notes list display
+## 📌 Features (Current)
+- Add notes (Title + Content)  
+- Display notes dynamically  
+- Clean UI with reusable components  
 
 ---
 
 ## 🔜 Upcoming
-- Add Note feature (input + save)
-- Edit / delete notes
-- Local database (Room)
-- UI improvements
+- Edit / delete notes  
+- Persistent storage (Room Database)  
+- Navigation between screens  
+- UI/UX improvements  
 
 ---
 
 ## 📈 Learning Approach
-Instead of following tutorials blindly, this project focuses on:
-- Understanding concepts step-by-step
-- Building features from scratch
-- Improving through daily iterations
+This project focuses on:
+- Understanding concepts deeply  
+- Building from scratch  
+- Improving through daily iteration  
+- Thinking like a developer, not just a learner  
 
 ---
 
 ## 👤 Author
-Mohammed Sahil  
+**Mohammed Sahil**  
 [LinkedIn](https://www.linkedin.com/in/mdsahil01/)  
 [GitHub](https://github.com/Mdsahil01)
