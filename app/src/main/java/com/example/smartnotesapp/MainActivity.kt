@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.smartnotesapp.ui.theme.SmartNotesAppTheme
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,20 +53,58 @@ fun MainScreen() {
 
     var message by remember { mutableStateOf("Started") }
 
-    val notes = listOf(
-        Note(1, "First Note", "This is my first note"),
-        Note(2, "Second Note", "Learning Jetpack Compose"),
-        Note(3, "Third Note", "Ship 70 challenge")
-    )
+    var title by remember {mutableStateOf("")}
+    var content by remember {mutableStateOf("")}
+
+    var  notes by remember {
+        mutableStateOf(
+            listOf(
+                Note(1, "First Note", "This is my first note"),
+                Note(2, "Second Note", "Learning Jetpack Compose"),
+                Note(3, "Third Note", "Ship 70 challenge")
+            )
+        )
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    )
+     {
+
+    OutlinedTextField(
+            value = title,
+            onValueChange = {title = it},
+            label = {Text("Title")}
+            )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = content,
+            onValueChange = { content = it },
+            label = { Text("Content")}
+        )
+
+         Button(onClick = {
+             val newNote = Note(
+                 id = notes.size + 1,
+                 title = title,
+                 content = content
+             )
+
+             notes = notes + newNote
+
+             // clear inputs
+             title = ""
+             content = ""
+         }) {
+             Text("Add Note")
+         }
+
 
         Text(
-            text = "Ship 70 - Day 2",
+            text = "Ship 70 - Day 3",
             fontSize = 24.sp
         )
 
@@ -107,15 +149,16 @@ fun NoteItem(note: Note) {
             .padding(8.dp)
     ) {
 
-        Text(
-            text = note.title,
-            fontSize = 18.sp
-        )
-
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(
-            text = note.content
-        )
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Column(modifier = Modifier.padding(12.dp)) {
+                Text(text = note.title, fontSize = 18.sp)
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(text = note.content, fontSize = 14.sp)
+            }
+        }
     }
 }
