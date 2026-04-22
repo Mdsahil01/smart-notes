@@ -47,7 +47,7 @@ Building a Smart Notes app in 70 days using **Android, Kotlin, and Jetpack Compo
 
 ### 🧩 App Flow (Day 4)
 <p align="center">
-  <img src="screenshots/day4.png" width="800"/>
+  <img src="screenshots/day4.jpg" width="800"/>
 </p>
 
 ### 📸 Previous Days
