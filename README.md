@@ -34,7 +34,23 @@ Building a Smart Notes app in 70 days using **Android, Kotlin, and Jetpack Compo
 
 ---
 
+### ✅ Day 4
+- Implemented navigation using `NavController`  
+- Added separate screen for adding notes  
+- Integrated Floating Action Button (FAB)  
+- Handled empty state UI ("No notes yet")  
+- Connected full app flow: List → Add → Save → Display  
+
+---
+
 ## 📱 Screenshots
+
+### 🧩 App Flow (Day 4)
+<p align="center">
+  <img src="screenshots/day4.png" width="800"/>
+</p>
+
+### 📸 Previous Days
 
 | Day 2 | Day 3 |
 |------|------|
@@ -46,12 +62,16 @@ Building a Smart Notes app in 70 days using **Android, Kotlin, and Jetpack Compo
 - Kotlin  
 - Jetpack Compose  
 - Android Studio  
+- Navigation Component (Compose)  
 
 ---
 
 ## 📌 Features (Current)
 - Add notes (Title + Content)  
 - Display notes dynamically  
+- Navigation between screens  
+- Floating Action Button (FAB)  
+- Empty state handling  
 - Clean UI with reusable components  
 
 ---
@@ -59,8 +79,8 @@ Building a Smart Notes app in 70 days using **Android, Kotlin, and Jetpack Compo
 ## 🔜 Upcoming
 - Edit / delete notes  
 - Persistent storage (Room Database)  
-- Navigation between screens  
-- UI/UX improvements  
+- Image support in notes  
+- UI/UX enhancements  
 
 ---
 
