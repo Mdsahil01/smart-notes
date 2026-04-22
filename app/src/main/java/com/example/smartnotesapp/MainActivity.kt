@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,23 +14,29 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.smartnotesapp.ui.theme.SmartNotesAppTheme
-
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +44,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainScreen()
+            val navController = rememberNavController()
+            val notes = remember { mutableStateListOf<Note>()}
+            NavGraph(navController,notes)
 
         }    }
 }
@@ -159,6 +168,111 @@ fun NoteItem(note: Note) {
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(text = note.content, fontSize = 14.sp)
             }
+        }
+    }
+}
+
+@Composable
+fun NavGraph(
+    navController: NavController,
+    notes: MutableList<Note>
+) {
+
+    NavHost(
+        navController = navController as NavHostController,
+        startDestination = "list"
+    ) {
+
+        composable("list") {
+            NotesListScreen(navController,notes)
+        }
+
+        composable("add") {
+            AddNotesScreen(navController,notes)
+        }
+    }
+}
+@Composable
+fun NotesListScreen(
+    navController: NavController,
+    notes: List<Note>
+) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+        if (notes.isEmpty()) {
+            Text(
+                text = "No notes yet. Tap + to add one 👇",
+                modifier = Modifier.align(Alignment.Center)
+            )
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                items(notes) { note ->
+                    NoteItem(note)
+                }
+            }
+        }
+
+        FloatingActionButton(
+            onClick = {
+                navController.navigate("add")
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "Add Note"
+            )
+        }
+    }
+}
+@Composable
+fun AddNotesScreen(
+    navController: NavHostController,
+    notes: MutableList<Note>
+) {
+    var title by remember { mutableStateOf("") }
+    var content by remember { mutableStateOf("") }
+
+    Column( modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+
+    ) {
+
+        OutlinedTextField(
+            value = title,
+            onValueChange = { title = it },
+            label = { Text("Title") }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            value = content,
+            onValueChange = { content = it },
+            label = { Text("Content") }
+        )
+        Button(
+            onClick = {
+                notes.add(
+                    Note(
+                        id = notes.size,
+                        title = title,
+                        content = content
+                    )
+                )
+                navController.popBackStack()
+            }
+        ) {
+            Text("Save Note")
         }
     }
 }
